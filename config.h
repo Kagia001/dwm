@@ -1,7 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 
-#include "shiftview.c"
-
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 1;        /* gap pixel between windows */
@@ -69,7 +67,7 @@ static const char *spotify[] = {"alacritty", "-e", "startSpotify", NULL};
 static const char *qutebrowser[] = {"qutebrowser", NULL};
 static const char *code[] = {"code", NULL};
 
-
+#include "shiftview.c"
 static Key keys[] = {
 	/* modifier			key			function			argument					description */
 
