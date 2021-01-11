@@ -1,7 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 20;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -97,6 +98,9 @@ static Key keys[] = {
 	{ MODKEY|MODKEY2,	XK_ae,		tagmon,				{.i = -1 } },				/* move to monitor */
  /* { MODKEY|ShiftMask,	XK_period,	tagmon,				{.i = +1 } }, */			/* move to monitor */
  /* { MODKEY,			XK_0,		view,				{.ui = ~0 } }, */			/* view all tabs */
+ /* { MODKEY,           XK_minus,   setgaps,            {.i = -1 } }, */            /* change gap size */
+ /* { MODKEY,           XK_equal,   setgaps,            {.i = +1 } }, */            /* change gap size */
+ /* { MODKEY|ShiftMask, XK_equal,   setgaps,            {.i = 0  } }, */            /* change gap size */
  /* { MODKEY|MODKEY2,	XK_0,		tag,				{.ui = ~0 } }, */			/* move to all tabs */
 	{ MODKEY,			XK_i,		shiftview,			{.i = +1} },					/* view next tab */
 	{ MODKEY,			XK_m,		shiftview,			{.i = -1} },					/* view prev tab */
