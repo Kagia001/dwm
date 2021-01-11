@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -105,15 +105,14 @@ static Key keys[] = {
  /* { MODKEY|MODKEY2,	XK_0,		tag,				{.ui = ~0 } }, */			/* move to all tabs */
 	{ MODKEY,			XK_i,		shiftview,			{.i = +1} },					/* view next tab */
 	{ MODKEY,			XK_m,		shiftview,			{.i = -1} },					/* view prev tab */
-	TAGKEYS(			XK_1,							0)							/* keybinds for tag 1 */
-	TAGKEYS(			XK_2,							1)							/* keybinds for tag 2 */
-	TAGKEYS(			XK_3,							2)							/* keybinds for tag 3 */
-	TAGKEYS(			XK_4,							3)							/* keybinds for tag 4 */
-	TAGKEYS(			XK_5,							4)							/* keybinds for tag 5 */
-	TAGKEYS(			XK_6,							5)							/* keybinds for tag 6 */
-	TAGKEYS(			XK_7,							6)							/* keybinds for tag 7 */
-	TAGKEYS(			XK_8,							7)							/* keybinds for tag 8 */
-	TAGKEYS(			XK_9,							8)							/* keybinds for tag 9 */
+	TAGKEYS(			XK_q,							0)							/* keybinds for tag 1 */
+	TAGKEYS(			XK_w,							1)							/* keybinds for tag 2 */
+	TAGKEYS(			XK_f,							2)							/* keybinds for tag 3 */
+	TAGKEYS(			XK_p,							3)							/* keybinds for tag 4 */
+	TAGKEYS(			XK_l,							4)							/* keybinds for tag 5 */
+	TAGKEYS(			XK_u,							5)							/* keybinds for tag 6 */
+	TAGKEYS(			XK_y,							6)							/* keybinds for tag 7 */
+	TAGKEYS(			XK_ooblique,					7)							/* keybinds for tag 8 */
 	{ MODKEY|MODKEY2,	XK_q,		quit,				{0} },						/* quit dwm */
 };
 
