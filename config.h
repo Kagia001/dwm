@@ -79,32 +79,21 @@ static Key keys[] = {
 	LAUNCH(				XK_r,							qutebrowser)				/* qutebrowser */
 	LAUNCH(				XK_a,							code)						/* code  */
 
- /* { MODKEY,			XK_b,		togglebar,			{0} },*/
 	{ MODKEY,			XK_n,		focusstack,			{.i = +1 } },				/* change stack focus */
 	{ MODKEY,			XK_e,		focusstack,			{.i = -1 } },				/* change stack focus */
- /* { MODKEY,			XK_i,		incnmaster,			{.i = +1 } },*/				/* change layout */
- /* { MODKEY,			XK_d,		incnmaster,			{.i = -1 } },*/				/* change layout */
+
 	{ MODKEY|MODKEY2,	XK_m,		setmfact,			{.f = -0.05} },				/* change horizontal size of focused */
 	{ MODKEY|MODKEY2,	XK_i,		setmfact,			{.f = +0.05} },				/* change horizontal size of focused */
 	{ MODKEY,			XK_space,	zoom,				{0} },						/* swaps with largest */
- /* { MODKEY,			XK_Tab,		view,				{0} }, */					/* tab 0 */
+
 	{ MODKEY,			XK_Menu,	killclient,			{0} },						/* kills window */
- /* { MODKEY,			XK_t,		setlayout,			{.v = &layouts[0]} },
-	{ MODKEY,			XK_f,		setlayout,			{.v = &layouts[1]} },
-	{ MODKEY,			XK_m,		setlayout,			{.v = &layouts[2]} }, */	/* sets layout */
- /* { MODKEY,			XK_space,	setlayout,			{0} }, */					/* toggle layouts */
-	{ MODKEY|MODKEY2,	XK_Return,	togglefloating,		{0} },						/* toggle wmindow float / tile */
-	{ MODKEY,			XK_o,		focusmon,			{.i = -1 } },				/* change monitor focus */
- /* { MODKEY,			XK_period,	focusmon,			{.i = +1 } }, */			/* change monitor focus */
-	{ MODKEY|MODKEY2,	XK_o,		tagmon,				{.i = -1 } },				/* move to monitor */
- /* { MODKEY|ShiftMask,	XK_period,	tagmon,				{.i = +1 } }, */			/* move to monitor */
- /* { MODKEY,			XK_0,		view,				{.ui = ~0 } }, */			/* view all tabs */
- /* { MODKEY,           XK_minus,   setgaps,            {.i = -1 } }, */            /* change gap size */
- /* { MODKEY,           XK_equal,   setgaps,            {.i = +1 } }, */            /* change gap size */
- /* { MODKEY|ShiftMask, XK_equal,   setgaps,            {.i = 0  } }, */            /* change gap size */
- /* { MODKEY|MODKEY2,	XK_0,		tag,				{.ui = ~0 } }, */			/* move to all tabs */
-	{ MODKEY,			XK_i,		shiftview,			{.i = +1} },					/* view next tab */
-	{ MODKEY,			XK_m,		shiftview,			{.i = -1} },					/* view prev tab */
+	{ MODKEY|MODKEY2,	XK_Return,	togglefloating,		{0} },						/* toggle window float / tile */
+
+	{ MODKEY,			XK_o,		focusmon,			{.i = +1 } },				/* change monitor focus */
+	{ MODKEY|MODKEY2,	XK_o,		tagmon,				{.i = +1 } },				/* move to monitor */
+	{ MODKEY,			XK_i,		shiftview,			{.i = +1} },				/* view next tab */
+	{ MODKEY,			XK_m,		shiftview,			{.i = -1} },				/* view prev tab */
+
 	TAGKEYS(			XK_q,							0)							/* keybinds for tag 1 */
 	TAGKEYS(			XK_w,							1)							/* keybinds for tag 2 */
 	TAGKEYS(			XK_f,							2)							/* keybinds for tag 3 */
@@ -114,6 +103,16 @@ static Key keys[] = {
 	TAGKEYS(			XK_y,							6)							/* keybinds for tag 7 */
 	TAGKEYS(			XK_ooblique,					7)							/* keybinds for tag 8 */
 	{ MODKEY|MODKEY2,	XK_q,		quit,				{0} },						/* quit dwm */
+
+
+ /* { MODKEY,			XK_b,		togglebar,			{0} },*/					/* ???? toggle task bar probably ???? */
+ /* { MODKEY,			XK_i,		incnmaster,			{.i = +1 } },*/				/* change layout */
+ /* { MODKEY,			XK_Tab,		view,				{0} }, */					/* tab 0 */
+ /* { MODKEY,			XK_m,		setlayout,			{.v = &layouts[2]} }, */	/* sets layout */
+ /* { MODKEY,			XK_space,	setlayout,			{0} }, */					/* toggle layouts */
+ /* { MODKEY,			XK_0,		view,				{.ui = ~0 } }, */			/* view all tabs */
+ /* { MODKEY,           XK_minus,   setgaps,            {.i = -1 } }, */            /* change gap size */
+ /* { MODKEY|MODKEY2,	XK_0,		tag,				{.ui = ~0 } }, */			/* move to all tabs */
 };
 
 /* button definitions */
