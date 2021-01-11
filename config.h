@@ -93,9 +93,9 @@ static Key keys[] = {
 	{ MODKEY,			XK_m,		setlayout,			{.v = &layouts[2]} }, */	/* sets layout */
  /* { MODKEY,			XK_space,	setlayout,			{0} }, */					/* toggle layouts */
 	{ MODKEY|MODKEY2,	XK_Return,	togglefloating,		{0} },						/* toggle wmindow float / tile */
-	{ MODKEY,			XK_ae,		focusmon,			{.i = -1 } },				/* change monitor focus */
+	{ MODKEY,			XK_o,		focusmon,			{.i = -1 } },				/* change monitor focus */
  /* { MODKEY,			XK_period,	focusmon,			{.i = +1 } }, */			/* change monitor focus */
-	{ MODKEY|MODKEY2,	XK_ae,		tagmon,				{.i = -1 } },				/* move to monitor */
+	{ MODKEY|MODKEY2,	XK_o,		tagmon,				{.i = -1 } },				/* move to monitor */
  /* { MODKEY|ShiftMask,	XK_period,	tagmon,				{.i = +1 } }, */			/* move to monitor */
  /* { MODKEY,			XK_0,		view,				{.ui = ~0 } }, */			/* view all tabs */
  /* { MODKEY,           XK_minus,   setgaps,            {.i = -1 } }, */            /* change gap size */
