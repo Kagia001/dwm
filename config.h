@@ -7,13 +7,13 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
-static const char col_bg[]	    = "#18262f";
-static const char col_border[]      = "#222e38";
-static const char col_bg_text[]     = "#a6afb8";
-static const char col_accent_text[] = "#18262f";
-static const char col_accent[]      = "#E4B51C";
+static const char *fonts[]          = { "firacode:size=10" };
+static const char dmenufont[]       = "firacode:size=10";
+static const char col_bg[]	    = "#282c34";
+static const char col_border[]      = "#343840";
+static const char col_bg_text[]     = "#abb2bf";
+static const char col_accent_text[] = "#282c34";
+static const char col_accent[]      = "#528bff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_bg_text, col_bg, col_border },
@@ -67,7 +67,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_bg_text, "-sb", col_accent, "-sf", col_accent_text, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *spotify[] = {"alacritty", "-e", "start-spotify", NULL};
+static const char *spotify[] = {"st", "-e", "start-spotify", NULL};
 static const char *qutebrowser[] = {"qutebrowser", NULL};
 static const char *editor[] = {"emacs", NULL};
 
