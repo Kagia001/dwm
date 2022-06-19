@@ -12,14 +12,17 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+
+static const char dracula_selection[] = "#44475a";
+static const char dracula_purple[]    = "#bd93f9";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, dracula_selection },
+	[SchemeSel]  = { col_gray4, col_cyan,  dracula_purple  },
 };
 
 /* tagging */
-static const char *tags[] = { "Q", "W", "F", "P", "L", "U", "Y", ";"};
+static const char *tags[] = { "0", "1", "2", "3"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -48,7 +51,6 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod1Mask
 #define MODKEY2 ShiftMask
-#define RKEY XK_Print
 
 #include <X11/XF86keysym.h>
 #include "shiftview.c"
@@ -80,7 +82,7 @@ static Key keys[] = {
         { 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
         { 0,                     XF86XK_AudioMute, spawn,          {.v = mutevol } },
         { 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol } },
-	{ 0,                            RKEY,   spawn,          {.v = rofi } },
+	{ MODKEY,                       XK_space,  spawn,          {.v = rofi } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = browser } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = spotify} },
@@ -88,22 +90,22 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_n,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_e,      focusstack,     {.i = -1 } },
+
 	{ MODKEY,                       XK_m,      shiftview,      {.i = -1 } },
 	{ MODKEY,                       XK_i,      shiftview,      {.i = +1 } },
+
 	{ MODKEY|MODKEY2,               XK_m,      setmfact,       {.f = -0.05} },
 	{ MODKEY|MODKEY2,               XK_i,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_space,  zoom,           {0} },
-	{ MODKEY,                       RKEY,   killclient,     {0} },
-	{ MODKEY,                       XK_1,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_2,      setlayout,      {.v = &layouts[2]} },
-	TAGKEYS(                        XK_q,                      0)
-	TAGKEYS(                        XK_w,                      1)
-	TAGKEYS(                        XK_f,                      2)
-	TAGKEYS(                        XK_p,                      3)
-	TAGKEYS(                        XK_l,                      4)
-	TAGKEYS(                        XK_u,                      5)
-	TAGKEYS(                        XK_y,                      6)
-	TAGKEYS(                        XK_semicolon,              7)
+
+	{ MODKEY,                       XK_h,      zoom,           {0} },
+
+	{ MODKEY,                       XK_d,      killclient,     {0} },
+	{ MODKEY,                       XK_9,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_0,      setlayout,      {.v = &layouts[0]} },
+	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_2,                      1)
+	TAGKEYS(                        XK_3,                      2)
+	TAGKEYS(                        XK_4,                      3)
 	{ ControlMask|ShiftMask,        XK_Escape, quit,           {0} },
 };
 
