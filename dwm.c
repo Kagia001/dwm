@@ -206,6 +206,7 @@ static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
 static void sigchld(int unused);
+static int singularborder_baradjustment(Client *c);
 static void spawn(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
@@ -1119,7 +1120,8 @@ monocle(Monitor *m)
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+		resize(c, m->wx - c->bw, m->wy - singularborder_baradjustment(c),
+			m->ww, m->wh - c->bw * m->showbar, False);
 }
 
 void
@@ -1643,6 +1645,12 @@ sigchld(int unused)
 	while (0 < waitpid(-1, NULL, WNOHANG));
 }
 
+int
+singularborder_baradjustment(Client *c)
+{
+	return c->bw * !(c->mon->showbar && topbar);
+}
+
 void
 spawn(const Arg *arg)
 {
@@ -1694,14 +1702,18 @@ tile(Monitor *m)
 	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 		if (i < m->nmaster) {
 			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
-			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
-			if (my + HEIGHT(c) < m->wh)
-				my += HEIGHT(c);
+			if (n == 1)
+				resize(c, m->wx - c->bw, m->wy - singularborder_baradjustment(c),
+					m->ww, m->wh - c->bw * m->showbar, False);
+			else
+				resize(c, m->wx - c->bw, m->wy + my - singularborder_baradjustment(c),
+					mw - c->bw, h - c->bw * m->showbar, False);
+			my += HEIGHT(c) - c->bw;
 		} else {
 			h = (m->wh - ty) / (n - i);
-			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
-			if (ty + HEIGHT(c) < m->wh)
-				ty += HEIGHT(c);
+			resize(c, m->wx + mw - c->bw, m->wy + ty - singularborder_baradjustment(c),
+				m->ww - mw, h - c->bw * m->showbar, False);
+			ty += HEIGHT(c) - c->bw;
 		}
 }
 
