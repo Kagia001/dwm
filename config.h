@@ -71,7 +71,7 @@ static const char *rofi[] = { "rofi", "-show", "run", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *spotify[] = {"spotify", NULL};
 static const char *browser[] = {"firefox", NULL};
-static const char *editor[] = {"emacs", NULL};
+static const char *editor[] = {"emacsclient", "-c", NULL};
 
 static const char *upvol[]   = { "amixer", "-c", "HD", "sset", "PCM", "playback", "volume", "-M", "2%+", NULL };
 static const char *downvol[] = { "amixer", "-c", "HD", "sset", "PCM", "playback", "volume", "-M", "2%-", NULL };
