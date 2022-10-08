@@ -35,6 +35,14 @@ static const Rule rules[] = {
   { NULL, NULL, NULL, 0, 0, -1 }
 };
 
+static const char *uskeyboard[] = {"setxkbmap", "us", NULL};
+static const char *colemakkeyboard[] = {"xmodmap", "/home/p/.config/xmodmap", NULL};
+
+static Switchcmd switchcmds[] = {
+  { NULL,        spawn, {.v = colemakkeyboard}},
+  { "stellaris", spawn, {.v = uskeyboard}},
+};
+
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
