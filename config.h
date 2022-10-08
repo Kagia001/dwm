@@ -4,9 +4,9 @@
 static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "firacode:size=10" };
-static const char dmenufont[]       = "firacode:size=10";
+static const int topbar             = 0;        /* 0 means bottom bar */
+static const char *fonts[]          = { "fira code:size=10" };
+static const char dmenufont[]       = "fira code:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -48,12 +48,13 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
+#include <X11/XF86keysym.h>
+#include "shiftview.c"
+
 /* key definitions */
 #define MODKEY Mod1Mask
 #define MODKEY2 ShiftMask
 
-#include <X11/XF86keysym.h>
-#include "shiftview.c"
 
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -71,17 +72,17 @@ static const char *rofi[] = { "rofi", "-show", "run", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *spotify[] = {"spotify", NULL};
 static const char *browser[] = {"firefox", NULL};
-static const char *editor[] = {"emacsclient", "-c", NULL};
+static const char *editor[] = {"emacs", NULL};
 
-static const char *upvol[]   = { "amixer", "-c", "HD", "sset", "PCM", "playback", "volume", "-M", "2%+", NULL };
-static const char *downvol[] = { "amixer", "-c", "HD", "sset", "PCM", "playback", "volume", "-M", "2%-", NULL };
-static const char *mutevol[] = { "amixer", "-c", "HD", "sset", "PCM", "playback", "volume", "-M", "0", NULL };
+static const char *upvol[]   = { "amixer", "-c", "1", "sset", "Master", "playback", "volume", "-M", "2%+", NULL };
+static const char *downvol[] = { "amixer", "-c", "1", "sset", "Master", "playback", "volume", "-M", "2%-", NULL };
+static const char *mutevol[] = { "amixer", "-c", "1", "sset", "Master", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-        { 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
-        { 0,                     XF86XK_AudioMute, spawn,          {.v = mutevol } },
-        { 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol } },
+        { MODKEY,                       XK_F1,     spawn,          {.v = mutevol } },
+        { MODKEY,                       XK_F2,     spawn,          {.v = downvol } },
+        { MODKEY,                       XK_F3,     spawn,          {.v = upvol } },
 	{ MODKEY,                       XK_space,  spawn,          {.v = rofi } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = browser } },
@@ -126,3 +127,75 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+void
+setlayoutex(const Arg *arg)
+{
+	setlayout(&((Arg) { .v = &layouts[arg->i] }));
+}
+
+void
+viewex(const Arg *arg)
+{
+	view(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+viewall(const Arg *arg)
+{
+	view(&((Arg){.ui = ~0}));
+}
+
+void
+toggleviewex(const Arg *arg)
+{
+	toggleview(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+tagex(const Arg *arg)
+{
+	tag(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+toggletagex(const Arg *arg)
+{
+	toggletag(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+tagall(const Arg *arg)
+{
+	tag(&((Arg){.ui = ~0}));
+}
+
+
+/* signal definitions */
+/* signum must be greater than 0 */
+/* trigger signals using `xsetroot -name "fsignal:<signame> [<type> <value>]"` */
+static Signal signals[] = {
+	/* signum           function */
+	{ "focusstack",     focusstack },
+	{ "setmfact",       setmfact },
+	{ "togglebar",      togglebar },
+	{ "incnmaster",     incnmaster },
+	{ "togglefloating", togglefloating },
+	{ "focusmon",       focusmon },
+	{ "tagmon",         tagmon },
+	{ "zoom",           zoom },
+	{ "view",           view },
+	{ "viewall",        viewall },
+	{ "viewex",         viewex },
+	{ "toggleview",     view },
+	{ "toggleviewex",   toggleviewex },
+	{ "tag",            tag },
+	{ "tagall",         tagall },
+	{ "tagex",          tagex },
+	{ "toggletag",      tag },
+	{ "toggletagex",    toggletagex },
+	{ "killclient",     killclient },
+	{ "quit",           quit },
+	{ "setlayout",      setlayout },
+	{ "setlayoutex",    setlayoutex },
+	{ "shiftview",      shiftview },
+};
